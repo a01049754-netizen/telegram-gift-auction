@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-
-import { AuctionController } from './auction.controller';
-import { AuctionService } from './auction.service';
 import { Auction, AuctionSchema } from './auction.schema';
+import { AuctionService } from './auction.service';
+import { AuctionController } from './auction.controller';
 
 @Module({
   imports: [
