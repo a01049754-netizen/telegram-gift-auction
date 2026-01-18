@@ -1,8 +1,17 @@
-export interface Auction {
-  id: string;
+@Schema({ timestamps: true })
+export class Auction extends Document {
+  @Prop({ required: true })
   title: string;
-  currentPrice: number;
-  endsAt: number;
-  finished: boolean;
-  winnerId?: string;
+
+  @Prop({ required: true })
+  startPrice: number;
+
+  @Prop({ required: true })
+  endAt: Date;
+
+  @Prop({ default: true })
+  isActive: boolean;
+
+  @Prop({ default: false })
+  extended: boolean;
 }
