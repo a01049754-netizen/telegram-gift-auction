@@ -15,4 +15,36 @@ export class BidService {
   ) {}
 
   async placeBid(auctionId: string, userId: string, amount: number) {
-    const auction
+    // 1️⃣ получаем аукцион
+    const auction = await this.auctionModel.findById(auctionId);
+
+    if (!auction || !auction.isActive) {
+      throw new BadRequestException('Auction not active');
+    }
+
+    const now = new Date();
+
+    if (auction.endAt <= now) {
+      throw new BadRequestException('Auction already ended');
+    }
+
+    // 2️⃣ сохраняем ставку
+    await this.bidModel.create({
+      auctionId,
+      userId,
+      amount,
+      createdAt: now,
+    });
+
+    // 3️⃣ АНТИ-СНАЙПИНГ (+5 секунд ОДИН РАЗ)
+    const timeLeft = auction.endAt.getTime() - now.getTime();
+
+    if (timeLeft <= 5000 && !auction.extended) {
+      auction.endAt = new Date(auction.endAt.getTime() + 5000);
+      auction.extended = true;
+      await auction.save();
+    }
+
+    return { success: true };
+  }
+}
