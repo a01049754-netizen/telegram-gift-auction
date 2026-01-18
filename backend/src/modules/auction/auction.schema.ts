@@ -4,20 +4,19 @@ import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class Auction extends Document {
   @Prop({ required: true })
-  title!: string;
+  title: string;
 
   @Prop({ required: true })
-  startPrice!: number;
+  startPrice: number;
 
   @Prop({ required: true })
-  endAt!: Date;
+  endAt: Date;
 
   @Prop({ default: true })
-  isActive!: boolean;
+  isActive: boolean = true;
 
-  // anti-sniping: можно продлить ТОЛЬКО ОДИН РАЗ (+5 сек)
   @Prop({ default: false })
-  extended!: boolean;
+  extended: boolean = false;
 }
 
 export const AuctionSchema = SchemaFactory.createForClass(Auction);
