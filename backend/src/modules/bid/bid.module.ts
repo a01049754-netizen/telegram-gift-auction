@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AuctionModule } from './modules/auction/auction.module';
-import { BidModule } from './modules/bid/bid.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Bid, BidSchema } from './bid.schema';
+import { BidService } from './bid.service';
+import { BidController } from './bid.controller';
 
 @Module({
   imports: [
-    AuctionModule,
-    BidModule,
+    MongooseModule.forFeature([{ name: Bid.name, schema: BidSchema }]),
   ],
+  controllers: [BidController],
+  providers: [BidService],
 })
-export class AppModule {}
+export class BidModule {}
