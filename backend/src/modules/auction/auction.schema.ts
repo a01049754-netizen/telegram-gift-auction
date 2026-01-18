@@ -1,3 +1,6 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
 @Schema({ timestamps: true })
 export class Auction extends Document {
   @Prop({ required: true })
@@ -13,5 +16,7 @@ export class Auction extends Document {
   isActive: boolean;
 
   @Prop({ default: false })
-  extended: boolean;
+  extended: boolean; // anti-sniping flag
 }
+
+export const AuctionSchema = SchemaFactory.createForClass(Auction);
