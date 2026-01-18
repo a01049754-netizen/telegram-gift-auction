@@ -1,8 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+export type AuctionDocument = Auction & Document;
+
 @Schema({ timestamps: true })
-export class Auction extends Document {
+export class Auction {
+
   @Prop({ required: true })
   title!: string;
 
