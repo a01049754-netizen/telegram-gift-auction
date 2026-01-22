@@ -1,5 +1,4 @@
 node_modules
-dist
 .env
 
 k6-v0.48.0-linux-arm64.tar.gz
