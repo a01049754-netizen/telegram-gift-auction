@@ -70,8 +70,7 @@ POST /auctions/:id/bid
 {
   "amount": 2000,
   "userId": "user_1"
-} 
-
+} ```
 **Validation rules**
 - Amount must be greater than current auction price
 - Auction must be active
