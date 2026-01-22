@@ -7,8 +7,10 @@ async function bootstrap() {
 
   app.enableShutdownHooks();
 
-  await app.listen(3000, '0.0.0.0');
-  console.log('SERVER REALLY LISTENING ON 3000');
+  const port = process.env.PORT || 3000;
+  await app.listen(port, '0.0.0.0');
+
+  console.log(`SERVER LISTENING ON ${port}`);
 }
 
 bootstrap();
