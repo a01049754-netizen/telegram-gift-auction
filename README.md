@@ -83,10 +83,14 @@ POST /auctions/:id/bid
 - 400 Bad Request — invalid bid or insufficient balance
 - 404 Not Found — auction not found
 ⚡ Load Testing
-Load testing was performed to verify concurrency safety and system stability under simultaneous bid requests.
-Tool
+
+Load testing was performed to verify concurrency safety and system stability.
+
+**Tool**
 autocannon
-Command
+
+**Command**
+```bash
 autocannon \
   -c 50 \
   -d 10 \
